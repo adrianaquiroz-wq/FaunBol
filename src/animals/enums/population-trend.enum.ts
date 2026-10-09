@@ -1,0 +1,6 @@
+export enum PopulationTrend {
+  INCREASING = 'INCREASING',
+  STABLE = 'STABLE',
+  DECREASING = 'DECREASING',
+  UNKNOWN = 'UNKNOWN',
+}
