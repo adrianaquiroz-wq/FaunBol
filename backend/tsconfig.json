@@ -18,7 +18,8 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "types": [
-      "node"
+      "node",
+      "multer"
     ]
   }
 }

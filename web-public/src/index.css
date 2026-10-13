@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+
+/* ── Tokens de diseño: "guía de campo" ─────────────────────────────── */
+@theme {
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-paper: #f7f2e8;
+  --color-sand-50: #fbf8f2;
+  --color-sand-100: #f1e9da;
+  --color-sand-200: #e6dac3;
+  --color-sand-300: #d6c6a6;
+  --color-line: #ddd1ba;
+
+  --color-ink: #1f2620;
+  --color-ink-soft: #4a524a;
+  --color-ink-muted: #6a6f63;
+
+  --color-forest-50: #eef3ec;
+  --color-forest-100: #d9e5d4;
+  --color-forest-300: #8fb08a;
+  --color-forest-500: #4d7a55;
+  --color-forest-700: #2f5a3c;
+  --color-forest-800: #254a31;
+  --color-forest-900: #1b3826;
+
+  --color-ochre-100: #f6e6cc;
+  --color-ochre-300: #e2b876;
+  --color-ochre-500: #c4873a;
+  --color-ochre-700: #8f5a1f;
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-forest-900;
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    @apply bg-ochre-300 text-ink;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ochre-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.18em] text-ochre-700 uppercase;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors;
+  }
+  /* Usar junto con .btn: class="btn btn-primary" */
+  .btn-primary {
+    @apply bg-forest-800 text-sand-50 hover:bg-forest-900;
+  }
+  .btn-secondary {
+    @apply border border-forest-800/30 bg-transparent text-forest-900 hover:border-forest-800 hover:bg-forest-50;
+  }
+  .btn-light {
+    @apply bg-sand-50 text-forest-900 hover:bg-white;
+  }
+
+  .card {
+    @apply rounded-(--radius-card) border border-line bg-sand-50;
+  }
+
+  .field {
+    @apply min-h-11 w-full rounded-xl border border-line bg-sand-50 px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted focus:border-forest-500 focus:outline-none focus-visible:outline-none focus:ring-3 focus:ring-forest-300/50;
+  }
+
+  .prose-field p + p {
+    @apply mt-3;
+  }
+
+  /* Textura sutil de papel/topografía para fondos */
+  .bg-topo {
+    background-color: var(--color-forest-900);
+    background-image:
+      radial-gradient(circle at 20% 20%, rgb(255 255 255 / 0.06) 0 2px, transparent 3px),
+      repeating-radial-gradient(circle at 80% 30%, transparent 0 22px, rgb(255 255 255 / 0.05) 23px 24px);
+    background-size: 40px 40px, auto;
+  }
+}
+
+@layer components {
+  .select-field {
+    cursor: pointer;
+    appearance: none;
+    padding-right: 2.25rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' stroke='%234a524a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+  }
+}

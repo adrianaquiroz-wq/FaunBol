@@ -1,0 +1,174 @@
+{
+  "app": {
+    "name": "FaunBol",
+    "subtitle": "Threatened wildlife of Bolivia",
+    "tagline": "Meet the Bolivian wildlife we could lose"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "species": "Species",
+    "ecoregions": "Ecoregions",
+    "about": "About",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skip": "Skip to content",
+    "homeLink": "FaunBol, go to home"
+  },
+  "lang": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English"
+  },
+  "home": {
+    "title": "Home",
+    "eyebrow": "Field guide · Bolivia",
+    "intro": "An educational catalog of the Bolivian vertebrate species facing extinction risk: who they are, where they live and what threatens them.",
+    "ctaCatalog": "Explore species",
+    "ctaEcoregions": "See ecoregions",
+    "heroCaption": "Featured",
+    "statsTitle": "The state of our wildlife",
+    "statsIntro": "Species listed in FaunBol by their IUCN Red List category.",
+    "statsTotal": "species in the catalog",
+    "statsBarLabel": "Species distribution by IUCN category",
+    "featuredTitleCR": "Critically Endangered",
+    "featuredTitleEN": "Endangered",
+    "featuredIntro": "Species facing the highest risk of disappearing.",
+    "featuredEmpty": "There are no featured species to show yet.",
+    "seeAll": "See all",
+    "exploreTitle": "Travel Bolivia through its landscapes",
+    "exploreText": "From the high Andean puna to the Amazon forests, Bolivia is home to 12 ecoregions. Discover which threatened species live in each one.",
+    "aboutTitle": "An educational project",
+    "aboutText": "Learn what the threat categories mean and where the data comes from.",
+    "aboutCta": "Read more"
+  },
+  "catalog": {
+    "title": "Species",
+    "intro": "Search and filter the threatened species listed in the catalog.",
+    "searchLabel": "Search species",
+    "searchPlaceholder": "Common or scientific name…",
+    "filtersLabel": "Filters",
+    "iucnLabel": "IUCN category",
+    "classLabel": "Class",
+    "ecoregionLabel": "Ecoregion",
+    "all": "All",
+    "clear": "Clear filters",
+    "results_one": "{{count}} species found",
+    "results_other": "{{count}} species found",
+    "emptyTitle": "No species found",
+    "emptyText": "Try another search or remove some filters.",
+    "ecoregionBanner": "Selected ecoregion",
+    "updating": "Updating results…"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "prev": "Previous",
+    "next": "Next",
+    "status": "Page {{page}} of {{total}}"
+  },
+  "animal": {
+    "noPhoto": "No photo available",
+    "photoOf": "Photo of {{name}}",
+    "photoCredit": "Photo: {{credit}}",
+    "back": "Back to catalog",
+    "statusTitle": "Conservation status",
+    "globalTitle": "Global · IUCN Red List",
+    "globalExplain": "Assessment by the International Union for Conservation of Nature of the species' extinction risk worldwide.",
+    "nationalTitle": "National · Bolivian Red Book",
+    "nationalExplain": "Assessment of the extinction risk within Bolivian territory, according to the Red Book of the Wild Vertebrate Fauna of Bolivia.",
+    "notAssessed": "Not assessed",
+    "notAssessedExplain": "The species does not have a recorded national assessment yet.",
+    "description": "Description",
+    "threats": "Threats",
+    "habitat": "Habitat",
+    "population": "Population",
+    "trend": "Trend",
+    "estimatedPopulation": "Estimated population",
+    "individuals": "{{value}} individuals",
+    "distribution": "Distribution",
+    "distributionNote": "Departments where the species has been recorded. For safety, we never show exact locations.",
+    "ecoregions": "Ecoregions",
+    "ecoregionLink": "See species from {{name}}",
+    "source": "Source",
+    "noData": "No information recorded.",
+    "class": "Class",
+    "notFoundTitle": "Species not found",
+    "notFoundText": "The species you are looking for does not exist or was removed from the catalog."
+  },
+  "ecoregions": {
+    "title": "Ecoregions",
+    "intro": "Bolivia is one of the most ecosystem-diverse countries in the world. According to Ibisch & Mérida (2003), its territory is divided into 12 ecoregions.",
+    "count_one": "{{count}} species",
+    "count_other": "{{count}} species",
+    "seeSpecies": "See species",
+    "seeSpeciesOf": "See species from {{name}}",
+    "emptyTitle": "No ecoregions available",
+    "emptyText": "No ecoregions have been recorded yet."
+  },
+  "about": {
+    "title": "About",
+    "lead": "FaunBol is an educational, bilingual catalog of Bolivia's threatened wildlife, built as a university project for the Web Technologies 2 course.",
+    "purposeTitle": "What is FaunBol?",
+    "purposeText": "It gathers public information about Bolivian vertebrate species at risk: their global and national conservation status, habitat, threats and the ecoregions where they live. The goal is to bring this knowledge closer to students and the general public.",
+    "categoriesTitle": "IUCN Red List categories",
+    "categoriesIntro": "The IUCN classifies species into eight categories according to their extinction risk. The three \"threatened\" categories are CR, EN and VU.",
+    "sourcesTitle": "Sources",
+    "noticeTitle": "Important notice",
+    "noticeText": "FaunBol is a strictly educational project. It must not be used to hunt, capture or trade wildlife. Locations are intentionally general (departments and ecoregions), never exact, so as not to put species at risk.",
+    "legalNote": "Hunting, capturing and trafficking wildlife are crimes in Bolivia."
+  },
+  "sources": {
+    "iucn": "IUCN. Red List of Threatened Species",
+    "redBook": "MMAyA. Red Book of the Wild Vertebrate Fauna of Bolivia",
+    "ecoregions": "Ibisch, P. L. & Mérida, G. (2003). Ecoregions of Bolivia"
+  },
+  "footer": {
+    "note": "Educational project. Locations are intentionally general: FaunBol must not be used to hunt or trade wildlife.",
+    "sourcesTitle": "Sources",
+    "explore": "Explore",
+    "course": "University project · Web Technologies 2"
+  },
+  "states": {
+    "loading": "Loading…",
+    "errorTitle": "We couldn't load the information",
+    "errorText": "The server is not responding right now. Check your connection and try again.",
+    "retry": "Try again",
+    "notFoundTitle": "Page not found",
+    "notFoundText": "The trail you are looking for doesn't exist. Maybe it fell off the map.",
+    "goHome": "Back to home",
+    "goCatalog": "Go to catalog"
+  },
+  "iucn": {
+    "EX": "Extinct",
+    "EW": "Extinct in the Wild",
+    "CR": "Critically Endangered",
+    "EN": "Endangered",
+    "VU": "Vulnerable",
+    "NT": "Near Threatened",
+    "LC": "Least Concern",
+    "DD": "Data Deficient"
+  },
+  "iucnDesc": {
+    "EX": "There is no reasonable doubt that the last individual has died.",
+    "EW": "Survives only in captivity or in populations outside its historic range.",
+    "CR": "Faces an extremely high risk of extinction in the wild.",
+    "EN": "Faces a very high risk of extinction in the wild.",
+    "VU": "Faces a high risk of extinction in the wild.",
+    "NT": "Is close to qualifying as threatened in the near future.",
+    "LC": "Is widespread and abundant; does not qualify as threatened.",
+    "DD": "There is not enough information to assess its extinction risk."
+  },
+  "animalClass": {
+    "MAMMAL": "Mammal",
+    "BIRD": "Bird",
+    "REPTILE": "Reptile",
+    "AMPHIBIAN": "Amphibian",
+    "FISH": "Fish"
+  },
+  "trend": {
+    "INCREASING": "Increasing",
+    "STABLE": "Stable",
+    "DECREASING": "Decreasing",
+    "UNKNOWN": "Unknown"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "app": {
+    "name": "FaunBol",
+    "subtitle": "Fauna amenazada de Bolivia",
+    "tagline": "Conoce la fauna boliviana que podemos perder"
+  },
+  "nav": {
+    "label": "Navegación principal",
+    "home": "Inicio",
+    "species": "Especies",
+    "ecoregions": "Ecorregiones",
+    "about": "Acerca de",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "skip": "Saltar al contenido",
+    "homeLink": "FaunBol, ir al inicio"
+  },
+  "lang": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English"
+  },
+  "home": {
+    "title": "Inicio",
+    "eyebrow": "Guía de campo · Bolivia",
+    "intro": "Un catálogo educativo de las especies de vertebrados bolivianos que enfrentan riesgo de extinción: quiénes son, dónde viven y qué las amenaza.",
+    "ctaCatalog": "Explorar especies",
+    "ctaEcoregions": "Ver ecorregiones",
+    "heroCaption": "En portada",
+    "statsTitle": "El estado de nuestra fauna",
+    "statsIntro": "Especies registradas en FaunBol según su categoría en la Lista Roja de la UICN.",
+    "statsTotal": "especies en el catálogo",
+    "statsBarLabel": "Distribución de especies por categoría UICN",
+    "featuredTitleCR": "En peligro crítico",
+    "featuredTitleEN": "En peligro",
+    "featuredIntro": "Especies que enfrentan el riesgo más alto de desaparecer.",
+    "featuredEmpty": "Aún no hay especies destacadas para mostrar.",
+    "seeAll": "Ver todas",
+    "exploreTitle": "Recorre Bolivia por sus paisajes",
+    "exploreText": "Desde la puna altoandina hasta los bosques amazónicos, Bolivia alberga 12 ecorregiones. Descubre qué especies amenazadas habitan en cada una.",
+    "aboutTitle": "Un proyecto educativo",
+    "aboutText": "Aprende qué significan las categorías de amenaza y de dónde vienen los datos.",
+    "aboutCta": "Leer más"
+  },
+  "catalog": {
+    "title": "Especies",
+    "intro": "Busca y filtra las especies amenazadas registradas en el catálogo.",
+    "searchLabel": "Buscar especie",
+    "searchPlaceholder": "Nombre común o científico…",
+    "filtersLabel": "Filtros",
+    "iucnLabel": "Categoría UICN",
+    "classLabel": "Clase",
+    "ecoregionLabel": "Ecorregión",
+    "all": "Todas",
+    "clear": "Limpiar filtros",
+    "results_one": "{{count}} especie encontrada",
+    "results_other": "{{count}} especies encontradas",
+    "emptyTitle": "No encontramos especies",
+    "emptyText": "Prueba con otra búsqueda o quita algunos filtros.",
+    "ecoregionBanner": "Ecorregión seleccionada",
+    "updating": "Actualizando resultados…"
+  },
+  "pagination": {
+    "label": "Paginación",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "status": "Página {{page}} de {{total}}"
+  },
+  "animal": {
+    "noPhoto": "Sin fotografía disponible",
+    "photoOf": "Fotografía de {{name}}",
+    "photoCredit": "Foto: {{credit}}",
+    "back": "Volver al catálogo",
+    "statusTitle": "Estado de conservación",
+    "globalTitle": "Global · Lista Roja de la UICN",
+    "globalExplain": "Evaluación de la Unión Internacional para la Conservación de la Naturaleza sobre el riesgo de extinción de la especie en todo el mundo.",
+    "nationalTitle": "Nacional · Libro Rojo de Bolivia",
+    "nationalExplain": "Evaluación del riesgo de extinción dentro del territorio boliviano, según el Libro Rojo de la Fauna Silvestre de Vertebrados de Bolivia.",
+    "notAssessed": "No evaluado",
+    "notAssessedExplain": "La especie aún no tiene una evaluación nacional registrada.",
+    "description": "Descripción",
+    "threats": "Amenazas",
+    "habitat": "Hábitat",
+    "population": "Población",
+    "trend": "Tendencia",
+    "estimatedPopulation": "Población estimada",
+    "individuals": "{{value}} individuos",
+    "distribution": "Distribución",
+    "distributionNote": "Departamentos donde se registra la especie. Por seguridad, no mostramos ubicaciones exactas.",
+    "ecoregions": "Ecorregiones",
+    "ecoregionLink": "Ver especies de {{name}}",
+    "source": "Fuente",
+    "noData": "Sin información registrada.",
+    "class": "Clase",
+    "notFoundTitle": "Especie no encontrada",
+    "notFoundText": "La especie que buscas no existe o fue retirada del catálogo."
+  },
+  "ecoregions": {
+    "title": "Ecorregiones",
+    "intro": "Bolivia es uno de los países con mayor diversidad de ecosistemas del mundo. Según Ibisch y Mérida (2003), su territorio se divide en 12 ecorregiones.",
+    "count_one": "{{count}} especie",
+    "count_other": "{{count}} especies",
+    "seeSpecies": "Ver especies",
+    "seeSpeciesOf": "Ver especies de {{name}}",
+    "emptyTitle": "No hay ecorregiones disponibles",
+    "emptyText": "Aún no se registraron ecorregiones."
+  },
+  "about": {
+    "title": "Acerca de",
+    "lead": "FaunBol es un catálogo educativo y bilingüe de la fauna silvestre amenazada de Bolivia, desarrollado como proyecto universitario para la materia Tecnologías Web 2.",
+    "purposeTitle": "¿Qué es FaunBol?",
+    "purposeText": "Reúne información pública sobre especies de vertebrados bolivianos en riesgo: su estado de conservación global y nacional, su hábitat, sus amenazas y las ecorregiones donde viven. El objetivo es acercar este conocimiento a estudiantes y al público en general.",
+    "categoriesTitle": "Categorías de la Lista Roja de la UICN",
+    "categoriesIntro": "La UICN clasifica a las especies en ocho categorías según su riesgo de extinción. Las tres categorías «amenazadas» son CR, EN y VU.",
+    "sourcesTitle": "Fuentes",
+    "noticeTitle": "Aviso importante",
+    "noticeText": "FaunBol es un proyecto exclusivamente educativo. No debe usarse para cazar, capturar ni comercializar fauna silvestre. Las ubicaciones se muestran de forma intencionalmente general (departamentos y ecorregiones) y nunca exacta, para no poner en riesgo a las especies.",
+    "legalNote": "La caza, captura y tráfico de fauna silvestre son delitos en Bolivia."
+  },
+  "sources": {
+    "iucn": "UICN. Lista Roja de Especies Amenazadas",
+    "redBook": "MMAyA. Libro Rojo de la Fauna Silvestre de Vertebrados de Bolivia",
+    "ecoregions": "Ibisch, P. L. y Mérida, G. (2003). Ecorregiones de Bolivia"
+  },
+  "footer": {
+    "note": "Proyecto educativo. Las ubicaciones son generales a propósito: FaunBol no debe usarse para cazar ni comerciar fauna silvestre.",
+    "sourcesTitle": "Fuentes",
+    "explore": "Explorar",
+    "course": "Proyecto universitario · Tecnologías Web 2"
+  },
+  "states": {
+    "loading": "Cargando…",
+    "errorTitle": "No pudimos cargar la información",
+    "errorText": "El servidor no responde en este momento. Revisa tu conexión e inténtalo de nuevo.",
+    "retry": "Reintentar",
+    "notFoundTitle": "Página no encontrada",
+    "notFoundText": "El sendero que buscas no existe. Quizá se borró del mapa.",
+    "goHome": "Volver al inicio",
+    "goCatalog": "Ir al catálogo"
+  },
+  "iucn": {
+    "EX": "Extinto",
+    "EW": "Extinto en estado silvestre",
+    "CR": "En peligro crítico",
+    "EN": "En peligro",
+    "VU": "Vulnerable",
+    "NT": "Casi amenazado",
+    "LC": "Preocupación menor",
+    "DD": "Datos insuficientes"
+  },
+  "iucnDesc": {
+    "EX": "No queda ninguna duda razonable de que el último individuo ha muerto.",
+    "EW": "Solo sobrevive en cautiverio o en poblaciones fuera de su distribución original.",
+    "CR": "Enfrenta un riesgo extremadamente alto de extinción en estado silvestre.",
+    "EN": "Enfrenta un riesgo muy alto de extinción en estado silvestre.",
+    "VU": "Enfrenta un riesgo alto de extinción en estado silvestre.",
+    "NT": "Está cerca de calificar como amenazada en un futuro próximo.",
+    "LC": "Es abundante y está ampliamente distribuida; no califica como amenazada.",
+    "DD": "No hay información suficiente para evaluar su riesgo de extinción."
+  },
+  "animalClass": {
+    "MAMMAL": "Mamífero",
+    "BIRD": "Ave",
+    "REPTILE": "Reptil",
+    "AMPHIBIAN": "Anfibio",
+    "FISH": "Pez"
+  },
+  "trend": {
+    "INCREASING": "En aumento",
+    "STABLE": "Estable",
+    "DECREASING": "En disminución",
+    "UNKNOWN": "Desconocida"
+  }
+}

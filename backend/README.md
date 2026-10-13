@@ -1,19 +1,6 @@
-# FaunBol API
+# FaunBol API (backend)
 
-API REST **educativa y de conservación** sobre fauna boliviana en peligro de extinción.
-
-> ⚠️ Este proyecto es con fines educativos y de conservación. **No** debe usarse para caza.
-> Por eso la distribución de cada especie se registra solo a nivel general (departamentos), nunca con ubicaciones exactas ni coordenadas.
-
-**Fuentes oficiales**
-- **UICN / IUCN**: Unión Internacional para la Conservación de la Naturaleza, Lista Roja ([iucnredlist.org](https://www.iucnredlist.org)).
-- **Libro Rojo de la Fauna Silvestre de Vertebrados de Bolivia**: Ministerio de Medio Ambiente y Agua (MMAyA).
-
-## Stack
-
-- NestJS 12 + TypeScript
-- PostgreSQL + TypeORM (con migraciones)
-- Swagger (OpenAPI)
+API REST de FaunBol hecha con NestJS 12, PostgreSQL, TypeORM y Swagger, organizada en **arquitectura limpia**. El contrato completo está en [`../docs/API.md`](../docs/API.md).
 
 ## Puesta en marcha
 
@@ -21,16 +8,23 @@ API REST **educativa y de conservación** sobre fauna boliviana en peligro de ex
    ```bash
    npm install
    ```
-2. **Crear la base de datos** (una sola vez), con psql o pgAdmin, usando el script `database/create-database.sql`:
+2. **Crear la base de datos** (una sola vez) con [`database/create-database.sql`](database/create-database.sql):
    ```sql
    CREATE DATABASE animales_extincion_db;
    ```
-3. **Configurar variables de entorno**: copia `.env.example` a `.env` (si no existe) y completa `DB_PASSWORD`.
-4. **Crear las tablas**
+3. **Configurar `.env`**: copia `.env.example` a `.env` y completa:
+   - `DB_PASSWORD`: la contraseña de tu Postgres.
+   - `JWT_SECRET`: un texto largo y aleatorio. Para generarlo:
+     ```bash
+     node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+     ```
+   - `ADMIN_EMAIL` y `ADMIN_PASSWORD`: los datos del primer administrador.
+   - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY` y `CLOUDINARY_API_SECRET`: las llaves de tu cuenta gratis de Cloudinary, en *Dashboard → API Keys*. Sin ellas la API funciona, pero subir fotos responde 503.
+4. **Crear o actualizar las tablas**
    ```bash
    npm run migration:run
    ```
-5. **Cargar datos iniciales** (10 especies bolivianas; se puede ejecutar varias veces sin duplicar)
+5. **Cargar los datos iniciales**: 12 ecorregiones, el admin y 10 especies en ES/EN. Se puede ejecutar más de una vez sin duplicar nada.
    ```bash
    npm run seed
    ```
@@ -39,64 +33,49 @@ API REST **educativa y de conservación** sobre fauna boliviana en peligro de ex
    npm run start:dev
    ```
 
+Después de levantarla:
 - API: http://localhost:3000/api
-- Swagger: http://localhost:3000/api/docs
+- Swagger: http://localhost:3000/api/docs. Usa el botón **Authorize** con el `accessToken` de `POST /api/auth/login`.
 
-> ⚠️ Las categorías de conservación del seed (`src/database/seeds/animals.seed-data.ts`) deben **verificarse** en la Lista Roja de la UICN y en el Libro Rojo de Bolivia antes de presentar el proyecto, porque las evaluaciones se actualizan periódicamente.
+> ⚠️ Las categorías UICN, las del Libro Rojo y las ecorregiones del seed (`src/database/seeds/`) deben **verificarse** en las fuentes oficiales antes de presentar.
 
-## Endpoints
+## Arquitectura limpia
 
-| Método | Ruta | Descripción |
-|---|---|---|
-| `POST` | `/api/animals` | Registrar un animal |
-| `GET` | `/api/animals` | Listar (paginado, con búsqueda y filtros) |
-| `GET` | `/api/animals/:id` | Obtener un animal |
-| `PATCH` | `/api/animals/:id` | Actualizar parcialmente |
-| `DELETE` | `/api/animals/:id` | Eliminar (soft delete) |
+Cada módulo (`animals`, `ecoregions`, `users`) tiene 4 capas. Las dependencias apuntan siempre hacia el dominio:
 
-Parámetros de `GET /api/animals`: `page` (por defecto 1), `limit` (por defecto 10, máximo 100), `search` (nombre común o científico), `iucnStatus` y `animalClass`.
+```
+animals/
+├── domain/          # Entidad Animal (sin TypeORM ni Nest), enums, interfaz AnimalRepository
+├── application/     # Casos de uso: CreateAnimal, UpdateAnimal, ListAnimals, UploadAnimalPhoto…
+├── infrastructure/  # Entidad ORM, TypeOrmAnimalRepository (adaptador del repositorio)
+├── presentation/    # Controller, DTOs con validación, respuestas para Swagger
+└── animals.module.ts  # Composición: une cada puerto con su adaptador
+shared/
+├── domain/          # Errores de dominio, idiomas, puerto FileStorage
+├── infrastructure/  # CloudinaryFileStorage (adaptador de FileStorage)
+└── presentation/    # Filtro que traduce errores de dominio a HTTP y decorador de idioma
+```
 
-Respuestas de error: `400` (datos inválidos o id que no es UUID), `404` (no encontrado), `409` (nombre científico duplicado).
+- **Dominio y aplicación no importan NestJS, TypeORM ni Cloudinary.** Los casos de uso son clases simples que reciben interfaces (puertos) por constructor.
+- **Inversión de dependencias:** los casos de uso dependen de `AnimalRepository`, `FileStorage`, `PasswordHasher` y `TokenService`. Las implementaciones concretas (TypeORM, Cloudinary, bcrypt, JWT) se conectan en el `*.module.ts`. Cambiar Cloudinary por otro proveedor solo toca `StorageModule`.
+- **Errores de dominio:** `NotFoundError`, `ConflictError`, `ForbiddenError`… no conocen HTTP. `DomainExceptionFilter` los traduce a 404, 409, 403… y agrega un `code` estable (`ACCOUNT_PENDING`, `SCIENTIFIC_NAME_TAKEN`…) para los frontends.
 
-### Categorías de conservación (UICN y Libro Rojo de Bolivia)
+## Autenticación y roles
 
-| Sigla | Significado |
-|---|---|
-| `LC` | Preocupación menor |
-| `NT` | Casi amenazado |
-| `VU` | Vulnerable |
-| `EN` | En peligro |
-| `CR` | En peligro crítico |
-| `EW` | Extinto en estado silvestre |
-| `EX` | Extinto |
-| `DD` | Datos insuficientes |
+- Login con **JWT**, válido por 8 horas. Las contraseñas se guardan cifradas con **bcrypt**.
+- El investigador se registra (`POST /api/auth/register`) y queda **PENDING**. El admin lo aprueba (**APPROVED**), lo rechaza con un motivo (**REJECTED**) o, más adelante, lo deshabilita (**DISABLED**).
+- En cada petición se vuelve a leer al usuario desde la base, así que deshabilitarlo tiene efecto **inmediato**, sin esperar a que venza el token.
+- `@Auth()` exige un token válido y `@Auth(UserRole.ADMIN)` además exige ese rol.
+
+## Idiomas
+
+Los textos de las especies y de las ecorregiones se guardan en español y en inglés; el inglés es opcional. Los endpoints públicos responden en el idioma de `?lang=es|en` o de `Accept-Language`, y si falta el inglés devuelven el español.
 
 ## Migraciones
-
-Al cambiar una entidad, genera una nueva migración y aplícala:
 
 ```bash
 npm run migration:generate -- src/database/migrations/NombreDelCambio
 npm run migration:run
-```
-
-Otros comandos: `npm run migration:revert` (deshace la última) y `npm run migration:show` (estado).
-
-## Estructura
-
-```
-src/
-├── animals/
-│   ├── dto/            # create, update, query y respuesta paginada
-│   ├── entities/       # entidad Animal (tabla animals)
-│   ├── enums/          # categorías UICN, clase, tendencia poblacional
-│   ├── animals.controller.ts
-│   ├── animals.service.ts
-│   └── animals.module.ts
-├── database/
-│   ├── migrations/
-│   ├── seeds/
-│   └── data-source.ts  # conexión compartida por la app, el CLI y el seed
-├── app.module.ts
-└── main.ts             # prefijo /api, validación, CORS y Swagger
+npm run migration:revert   # deshace la última
+npm run migration:show     # estado
 ```

@@ -1,12 +1,9 @@
 import 'dotenv/config';
-import {
-  ClassSerializerInterceptor,
-  Logger,
-  ValidationPipe,
-} from '@nestjs/common';
-import { NestFactory, Reflector } from '@nestjs/core';
+import { Logger, ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module.js';
+import { DomainExceptionFilter } from './shared/presentation/domain-exception.filter.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,7 +17,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+  app.useGlobalFilters(new DomainExceptionFilter());
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('FaunBol API – Endangered Bolivian Wildlife')
@@ -30,7 +27,8 @@ async function bootstrap() {
         'Bolivian Red Book (Libro Rojo de la Fauna Silvestre de Vertebrados de Bolivia, MMAyA). ' +
         'For education and conservation only: distribution data is kept general on purpose.',
     )
-    .setVersion('1.0')
+    .setVersion('0.2')
+    .addBearerAuth()
     .build();
   SwaggerModule.setup(
     'api/docs',
